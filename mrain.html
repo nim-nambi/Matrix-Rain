@@ -1,0 +1,48 @@
+<!doctype html>
+
+<head>
+  <title>Matrix rain</title>
+  <style>
+      * {margin: 0; padding: 0}
+        body {background: black;}
+        canvas {display: block;}
+  </style>
+</head>
+
+<body>
+    <canvas>      </canvas>
+    <script >
+    var canvas = document.querySelector('canvas'),
+    ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    var letters = '诶比西迪伊艾弗吉艾尺艾杰开艾勒艾马艾娜哦屁吉吾艾儿艾丝提伊吾维豆贝尔维艾克斯吾艾贼德';
+    letters = letters.split('');
+
+    var fontSize = 10,
+        columns = canvas.width / fontSize;
+
+    var drops = [];
+    for (var i = 0; i < columns; i++) {
+    drops[i] = 1;
+    }
+
+    function draw() {
+    ctx.fillStyle = 'rgba(0, 0, 0, .05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    for (var i = 0; i < drops.length; i++) {
+        var text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillStyle = '#0F0';
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        drops[i]++;
+        if (drops[i] * fontSize > canvas.height && Math.random() > .975) {
+        drops[i] = 0;
+        }
+    }
+    }
+
+    setInterval(draw, 33);
+    </script>
+</body>
